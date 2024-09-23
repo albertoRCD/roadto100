@@ -182,3 +182,71 @@ function countWords(string){
  * decimal a binario sin utilizar funciones propias del lenguaje que lo hagan directamente.
  */
 
+function transformDecimalToBinary(decimal){
+    let binario = '';
+    let numero = decimal;
+
+    while (numero > 0) {
+        const residuo = numero % 2;
+        binario = residuo + binario; 
+        numero = Math.floor(numero / 2); 
+    }
+    return binario === '' ? '0' : binario;
+}
+//console.log(transformDecimalToBinary(1))
+
+/*
+#10 ----------------------------------------------------------------------------
+ * Crea un programa que sea capaz de transformar texto natural a código
+ * morse y viceversa.
+ * - Debe detectar automáticamente de qué tipo se trata y realizar
+ *   la conversión.
+ * - En morse se soporta raya "—", punto ".", un espacio " " entre letras
+ *   o símbolos y dos espacios entre palabras "  ".
+ * - El alfabeto morse soportado será el mostrado en
+ *   https://es.wikipedia.org/wiki/Código_morse.
+ */
+
+function codeMorse(text){
+    const morseDict = {
+        'A': '.-',    'B': '-...',  'C': '-.-.',  'D': '-..',   'E': '.',
+        'F': '..-.',  'G': '--.',   'H': '....',  'I': '..',    'J': '.---',
+        'K': '-.-',   'L': '.-..',  'M': '--',    'N': '-.',    'O': '---',
+        'P': '.--.',  'Q': '--.-',  'R': '.-.',   'S': '...',   'T': '-',
+        'U': '..-',   'V': '...-',  'W': '.--',   'X': '-..-',  'Y': '-.--',
+        'Z': '--..',
+        'a': '.-',    'b': '-...',  'c': '-.-.',  'd': '-..',   'e': '.',
+        'f': '..-.',  'g': '--.',   'h': '....',  'i': '..',    'j': '.---',
+        'k': '-.-',   'l': '.-..',  'm': '--',    'n': '-.',    'o': '---',
+        'p': '.--.',  'q': '--.-',  'r': '.-.',   's': '...',   't': '-',
+        'u': '..-',   'v': '...-',  'w': '.--',   'x': '-..-',  'y': '-.--',
+        'z': '--..',
+        '0': '-----', '1': '.----', '2': '..---', '3': '...--', '4': '....-', 
+        '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.'
+    };
+
+    const reverseMorseDict = {
+        '.-': 'A',    '-...': 'B',  '-.-.': 'C',  '-..': 'D',   '.': 'E',
+        '..-.': 'F',  '--.': 'G',   '....': 'H',  '..': 'I',    '.---': 'J',
+        '-.-': 'K',   '.-..': 'L',  '--': 'M',    '-.': 'N',    '---': 'O',
+        '.--.': 'P',  '--.-': 'Q',  '.-.': 'R',   '...': 'S',   '-': 'T',
+        '..-': 'U',   '...-': 'V',  '.--': 'W',   '-..-': 'X',  '-.--': 'Y',
+        '--..': 'Z',
+        '-----': '0', '.----': '1', '..---': '2', '...--': '3', '....-': '4', 
+        '.....': '5', '-....': '6', '--...': '7', '---..': '8', '----.': '9'
+    };
+
+    let r = "";
+    if(/[a-zA-Z0-9]/.test(text)){
+        for(let i=0; i<text.length; i++){
+            r += morseDict[text[i]] + " ";
+        }
+    } else {
+        for(let i=0; i<text.length; i++){
+            r += reverseMorseDict[text[i]] + " ";
+        }
+    }
+    return r;
+}
+
+//console.log(codeMorse('amparo'));
