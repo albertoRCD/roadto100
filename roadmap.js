@@ -482,7 +482,7 @@ function numberDays(date1, date2) {
         let month = d.slice(firstb + 1, secondb);
 
         let newdate1 = month + "/" + day + "/" + d.slice(-4);
-        
+
         return new Date(newdate1);
     }
 
@@ -493,9 +493,115 @@ function numberDays(date1, date2) {
         let oneday = 86400000;
         return Math.round(Math.abs(d1.getTime() - d2.getTime()) * 24 / oneday / 24);
 
-    } catch(e){
+    } catch (e) {
         console.log(e);
         return null;
     }
 }
 //console.log(numberDays('1/1/2024', '1/1/2025'));
+
+/*
+#17 ----------------------------------------------------------------------------
+ * Crea una función que reciba un String de cualquier tipo y se encargue de
+ * poner en mayúscula la primera letra de cada palabra.
+ * - No se pueden utilizar operaciones del lenguaje que
+ *   lo resuelvan directamente.
+ */
+const putUpperCase = (s) => {
+    return s.split(" ").map(x => x[0] = x[0].toUpperCase() + x.slice(1, )).join(" ");
+}
+//console.log(putUpperCase('amparo jose de todos los santos'));
+
+/*
+#18 ----------------------------------------------------------------------------
+ * Crea una función que evalúe si un/a atleta ha superado correctamente una
+ * carrera de obstáculos.
+ * - La función recibirá dos parámetros:
+ *      - Un array que sólo puede contener String con las palabras
+ *        "run" o "jump"
+ *      - Un String que represente la pista y sólo puede contener "_" (suelo)
+ *        o "|" (valla)
+ * - La función imprimirá cómo ha finalizado la carrera:
+ *      - Si el/a atleta hace "run" en "_" (suelo) y "jump" en "|" (valla)
+ *        será correcto y no variará el símbolo de esa parte de la pista.
+ *      - Si hace "jump" en "_" (suelo), se variará la pista por "x".
+ *      - Si hace "run" en "|" (valla), se variará la pista por "/".
+ * - La función retornará un Boolean que indique si ha superado la carrera.
+ * Para ello tiene que realizar la opción correcta en cada tramo de la pista.
+ */
+
+const theRace = (array, string) => {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] != 'run' && array[i] != 'jump') return false;
+    }
+
+    for (let i = 0; i < string.length; i++) {
+        if (string[i] != '_' && string[i] != '|') return false;
+    }
+
+    if (array.length != string.length) return false;
+
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] == 'run' && string[i] != '_') return false;
+        else if (array[i] == 'jump' && string[i] != '|') return false;
+    }
+    return true;
+}
+
+//console.log(theRace(['run','run','jump','run'], '__|_'));
+
+/*
+#19 ----------------------------------------------------------------------------
+ * Crea una función que analice una matriz 3x3 compuesta por "X" y "O"
+ * y retorne lo siguiente:
+ * - "X" si han ganado las "X"
+ * - "O" si han ganado los "O"
+ * - "Empate" si ha habido un empate
+ * - "Nulo" si la proporción de "X", de "O", o de la matriz no es correcta.
+ *   O si han ganado los 2.
+ * Nota: La matriz puede no estar totalmente cubierta.
+ * Se podría representar con un vacío "", por ejemplo.
+ */
+
+const threeInRow = (table) => {
+
+     // Verificar que todos los elementos sean válidos
+     for (let i = 0; i < table.length; i++) {
+        for (let j = 0; j < table[i].length; j++) {
+            if (!(table[i][j] === 'o' || table[i][j] === 'x' || table[i][j] === '')) {
+                return null; // Retorna null si el elemento contiene caracteres no permitidos
+            }
+        }
+    }
+        
+    //Check rows.
+    for(let i=0; i<table.length; i++){
+        if(table[i].filter(x => x == 'x').length == 3) return 'X';
+        if(table[i].filter(x => x == 'o').length == 3) return 'O';
+    }
+
+    //Check columns.
+    for(let i=0; i<table.length; i++){
+            if(table[0][i] == 'x' && table[1][i] == 'x' && table[2][i] == 'x') return 'X';
+            else if(table[0][i] == 'o' && table[1][i] == 'o' && table[2][i] == 'o') return 'O';
+    }
+
+    // Check diagonals
+    if (table[0][0] === 'x' && table[1][1] === 'x' && table[2][2] === 'x') return 'X';
+    if (table[0][2] === 'x' && table[1][1] === 'x' && table[2][0] === 'x') return 'X';
+    if (table[0][0] === 'o' && table[1][1] === 'o' && table[2][2] === 'o') return 'O';
+    if (table[0][2] === 'o' && table[1][1] === 'o' && table[2][0] === 'o') return 'O';
+
+    // Check for draw (empate)
+    const isFull = table.every(row => row.every(cell => cell !== ''));
+    if (isFull) return 'Empate';
+
+}
+
+console.log(threeInRow(
+    [
+        ['o', 'o', 'x'],
+        ['x', 'o', 'o'],
+        ['o', '', 'o']
+    ]
+));
