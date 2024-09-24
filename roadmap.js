@@ -598,10 +598,114 @@ const threeInRow = (table) => {
 
 }
 
-console.log(threeInRow(
+/*console.log(threeInRow(
     [
         ['o', 'o', 'x'],
         ['x', 'o', 'o'],
         ['o', '', 'o']
     ]
-));
+));*/
+
+/*
+#20 ----------------------------------------------------------------------------
+ * Crea una función que reciba días, horas, minutos y segundos (como enteros)
+ * y retorne su resultado en milisegundos.
+ */
+
+const miliseconds = (d, h, m, s) => {
+
+    let scs = s * 1000;
+    let mns = m * 60000;
+    let hrs = h * 3600000;
+    let days = d * 86400000;
+
+    return scs + mns + hrs + days;
+}
+//console.log(miliseconds(2,4,10,44));
+
+/*
+#21 ----------------------------------------------------------------------------
+ * Crea una función que sume 2 números y retorne su resultado pasados
+ * unos segundos.
+ * - Recibirá por parámetros los 2 números a sumar y los segundos que
+ *   debe tardar en finalizar su ejecución.
+ * - Si el lenguaje lo soporta, deberá retornar el resultado de forma
+ *   asíncrona, es decir, sin detener la ejecución del programa principal.
+ *   Se podría ejecutar varias veces al mismo tiempo.
+ */
+
+const stopingTime = (n1, n2, stop) => {
+
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(n1 + n2);
+        }, stop);
+    });
+};
+
+/*stopingTime(10, 2, 5000).then(result => {
+    console.log(result); 
+});*/
+
+/*
+#22 ----------------------------------------------------------------------------
+ * Lee el fichero "Challenge21.txt" incluido en el proyecto, calcula su
+ * resultado e imprímelo.
+ * - El .txt se corresponde con las entradas de una calculadora.
+ * - Cada línea tendrá un número o una operación representada por un
+ *   símbolo (alternando ambos).
+ * - Soporta números enteros y decimales.
+ * - Soporta las operaciones suma "+", resta "-", multiplicación "*"
+ *   y división "/".
+ * - El resultado se muestra al finalizar la lectura de la última
+ *   línea (si el .txt es correcto).
+ * - Si el formato del .txt no es correcto, se indicará que no se han
+ *   podido resolver las operaciones.
+ */
+
+
+/*
+#23 ----------------------------------------------------------------------------
+ * Crea una función que reciba dos array, un booleano y retorne un array.
+ * - Si el booleano es verdadero buscará y retornará los elementos comunes
+ *   de los dos array.
+ * - Si el booleano es falso buscará y retornará los elementos no comunes
+ *   de los dos array.
+ * - No se pueden utilizar operaciones del lenguaje que
+ *   lo resuelvan directamente.
+ */
+
+const outfitWTF = (arr1, arr2, b) => {
+
+    let r = [];
+    if(b){
+        for(let i=0; i<arr1.length; i++){
+           if(arr2.includes(arr1[i])){
+            r.push(arr1[i]);
+           }
+        }
+        for(let i=0; i<arr2.length; i++){
+            if(arr1.includes(arr2[i])){
+             r.push(arr2[i]);
+            }
+         }
+    } else {
+        for(let i=0; i<arr1.length; i++){
+            if(!arr2.includes(arr1[i])){
+             r.push(arr1[i]);
+            }
+         }
+         for(let i=0; i<arr2.length; i++){
+             if(!arr1.includes(arr2[i])){
+              r.push(arr2[i]);
+             }
+          }
+
+    }
+
+    return Array.from(new Set(r));
+}
+
+//console.log(outfitWTF(['amparo','jose',2], ['hose', 'jose', 3], true));
+
+
