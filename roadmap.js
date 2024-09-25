@@ -708,4 +708,127 @@ const outfitWTF = (arr1, arr2, b) => {
 
 //console.log(outfitWTF(['amparo','jose',2], ['hose', 'jose', 3], true));
 
+/*
+#24 ----------------------------------------------------------------------------
+ * Crea dos funciones, una que calcule el máximo común divisor (MCD) y otra
+ * que calcule el mínimo común múltiplo (mcm) de dos números enteros.
+ * - No se pueden utilizar operaciones del lenguaje que
+ *   lo resuelvan directamente.
+ */
+
+const mcd = (n1, n2) => {
+    let numbers1 = [];
+    let numbers2 = [];
+
+    for(let i=1; i<=n1; i++){
+        if(n1 % i == 0) numbers1.push(i);
+    }
+
+    for(let i=1; i<=n2; i++){
+        if(n2 % i == 0) numbers2.push(i);
+    }
+    return numbers1.filter(x => numbers2.includes(x)).sort((a,b) => b-a)[0];
+}
+
+const mcm = (n1, n2) => {
+    
+    let numbers1 = [];
+        for(let i=n1; i<101; i++)
+            if(i % n1 == 0) numbers1.push(i);
+
+    let r = n2;
+    do {
+        if(r % n2 == 0){
+            if(numbers1.includes(r)) return r;
+        }
+        r++;
+    }while(true)
+        
+}
+
+//console.log(mcd(18, 15));
+//console.log(mcm(18, 15));
+
+/*
+#25 ----------------------------------------------------------------------------
+ * Quiero contar del 1 al 100 de uno en uno (imprimiendo cada uno).
+ * ¿De cuántas maneras eres capaz de hacerlo?
+ * Crea el código para cada una de ellas.
+ */
+
+const count1to100 = () => {
+    //1
+    let n = 1;
+    while(n != 101){
+        //console.log(n);
+        n++;
+    }
+    //2
+    for(let i=1; i<101; i++){
+        //console.log(i);
+    }
+    //3
+    console.log(Array.from({ length: 100 }, (_, i) => i + 1).map(x => x));
+}
+//count1to100();
+
+/*
+#26 ----------------------------------------------------------------------------
+* Crea un programa que calcule quien gana más partidas al piedra,
+ * papel, tijera.
+ * - El resultado puede ser: "Player 1", "Player 2", "Tie" (empate)
+ * - La función recibe un listado que contiene pares, representando cada jugada.
+ * - El par puede contener combinaciones de "R" (piedra), "P" (papel)
+ *   o "S" (tijera).
+ * - Ejemplo. Entrada: [("R","S"), ("S","R"), ("P","S")]. Resultado: "Player 2".
+ */
+
+function rockPaperScisors(c) {
+    let r = ['Player1', 'Player2', 'Empate-'];
+
+    for(let i=0; i<c.length; i++){
+        let player1 = c[i][0];
+        let player2 = c[i][1];
+
+        if(player1 == player2) r[2]+='.';
+
+        else if(player1 == 'R' && player2 == 'S') r[0]+='.';
+        else if(player1 == 'S' && player2 == 'P') r[0]+='.';
+        else if(player1 == 'P' && player2 == 'R') r[0]+='.';
+
+        else r[1]+='.';
+    }
+
+    return r.sort((a,b) => b.length-a.length)[0].slice(0,7);
+}
+//console.log(rockPaperScisors([["S","S"], ["S","S"], ["P","S"]]));
+
+/*
+#27 ----------------------------------------------------------------------------
+ * Crea un programa que dibuje un cuadrado o un triángulo con asteriscos "*".
+ * - Indicaremos el tamaño del lado y si la figura a dibujar es una u otra.
+ * - EXTRA: ¿Eres capaz de dibujar más figuras?
+ */
+
+const paintShapes = (...args) => {
+
+    let lado;
+
+    if(args.length == 1){
+        lado = args[0];
+        for(let i = 0; i < lado; i++){
+            let row = '';  // Almacenar cada fila
+            for(let j = 0; j < lado; j++){
+                if(i == 0 || i == lado - 1 || j == 0 || j == lado - 1){
+                    row += '*';
+                } else {
+                    row += ' ';
+                }
+            }
+            console.log(row);  // Imprimir la fila completa
+        }
+    }
+}
+
+paintShapes(4);
 
