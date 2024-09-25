@@ -949,3 +949,46 @@ const orderArray = (array, order) => {
     }
 }
 //console.log(orderArray([5, 2, 7, 1, 5, 2, 4, 65, 21, 22, 10], 'asc'));
+
+/*
+#31 ---------------------------------------------------------------------------- 
+* Crea una función que reciba un texto y muestre cada palabra en una línea,
+ * formando un marco rectangular de asteriscos.
+ * - ¿Qué te parece el reto? Se vería así:
+ *   **********
+ *   * ¿Qué   *
+ *   * te     *
+ *   * parece *
+ *   * el     *
+ *   * reto?  *
+ *   **********
+ */
+
+function beatifulText(text){
+    let t = "*".repeat(14);
+    for(w of text.split(" ")){
+        t+="\n*"+w+" ".repeat(10-w.length+2)+"*\n";
+    }
+    t+='*'.repeat(14);
+    return t;
+}
+//console.log(beatifulText('hola que tal soy colosal'));
+
+/*
+#32 ---------------------------------------------------------------------------- 
+* * Crea una función que imprima los 30 próximos años bisiestos
+ * siguientes a uno dado.
+ * - Utiliza el menor número de líneas para resolver el ejercicio.
+ */
+
+const isBisiesto = (y) => {
+    let count = 0;
+    let years = [];
+    do {
+        if((y % 4 == 0 && y % 100 !== 0) || (y % 400 == 0)) {years.push(y); count++};
+        y++;
+    }while(count < 30);
+
+    return years;
+}
+//console.log(isBisiesto(2010));
