@@ -813,7 +813,6 @@ function rockPaperScisors(c) {
 const paintShapes = (...args) => {
 
     let lado;
-
     if(args.length == 1){
         lado = args[0];
         for(let i = 0; i < lado; i++){
@@ -828,7 +827,36 @@ const paintShapes = (...args) => {
             console.log(row);  // Imprimir la fila completa
         }
     }
+    else if(args.length == 2){
+        lado = args[0];
+       for(let i=0; i<lado; i++){
+        console.log(" ".repeat(lado/2 - i+1)+"*".repeat(i+i+1)+'\n');
+       }
+    }
+}
+//paintShapes(5,5);
+
+/*
+#28 ----------------------------------------------------------------------------
+ * Crea un programa que determine si dos vectores son ortogonales.
+ * - Los dos array deben tener la misma longitud.
+ * - Cada vector se podría representar como un array. Ejemplo: [1, -2]
+ */
+
+function isOrtogonals (vector1, vector2){
+    // Verificar si los vectores tienen la misma longitud
+    if (vector1.length !== vector2.length) {
+        throw new Error("Los vectores deben tener la misma longitud.");
+    }
+
+    // Calcular el producto punto
+    let productoPunto = 0;
+    for (let i = 0; i < vector1.length; i++) {
+        productoPunto += vector1[i] * vector2[i];
+    }
+
+    // Determinar si son ortogonales
+    return productoPunto === 0;
 }
 
-paintShapes(4);
-
+//console.log(isOrtogonals([1,-2], [2,1]));
