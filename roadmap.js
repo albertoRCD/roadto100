@@ -565,25 +565,25 @@ const theRace = (array, string) => {
 
 const threeInRow = (table) => {
 
-     // Verificar que todos los elementos sean válidos
-     for (let i = 0; i < table.length; i++) {
+    // Verificar que todos los elementos sean válidos
+    for (let i = 0; i < table.length; i++) {
         for (let j = 0; j < table[i].length; j++) {
             if (!(table[i][j] === 'o' || table[i][j] === 'x' || table[i][j] === '')) {
                 return null; // Retorna null si el elemento contiene caracteres no permitidos
             }
         }
     }
-        
+
     //Check rows.
-    for(let i=0; i<table.length; i++){
-        if(table[i].filter(x => x == 'x').length == 3) return 'X';
-        if(table[i].filter(x => x == 'o').length == 3) return 'O';
+    for (let i = 0; i < table.length; i++) {
+        if (table[i].filter(x => x == 'x').length == 3) return 'X';
+        if (table[i].filter(x => x == 'o').length == 3) return 'O';
     }
 
     //Check columns.
-    for(let i=0; i<table.length; i++){
-            if(table[0][i] == 'x' && table[1][i] == 'x' && table[2][i] == 'x') return 'X';
-            else if(table[0][i] == 'o' && table[1][i] == 'o' && table[2][i] == 'o') return 'O';
+    for (let i = 0; i < table.length; i++) {
+        if (table[0][i] == 'x' && table[1][i] == 'x' && table[2][i] == 'x') return 'X';
+        else if (table[0][i] == 'o' && table[1][i] == 'o' && table[2][i] == 'o') return 'O';
     }
 
     // Check diagonals
@@ -678,28 +678,28 @@ const stopingTime = (n1, n2, stop) => {
 const outfitWTF = (arr1, arr2, b) => {
 
     let r = [];
-    if(b){
-        for(let i=0; i<arr1.length; i++){
-           if(arr2.includes(arr1[i])){
-            r.push(arr1[i]);
-           }
+    if (b) {
+        for (let i = 0; i < arr1.length; i++) {
+            if (arr2.includes(arr1[i])) {
+                r.push(arr1[i]);
+            }
         }
-        for(let i=0; i<arr2.length; i++){
-            if(arr1.includes(arr2[i])){
-             r.push(arr2[i]);
+        for (let i = 0; i < arr2.length; i++) {
+            if (arr1.includes(arr2[i])) {
+                r.push(arr2[i]);
             }
-         }
+        }
     } else {
-        for(let i=0; i<arr1.length; i++){
-            if(!arr2.includes(arr1[i])){
-             r.push(arr1[i]);
+        for (let i = 0; i < arr1.length; i++) {
+            if (!arr2.includes(arr1[i])) {
+                r.push(arr1[i]);
             }
-         }
-         for(let i=0; i<arr2.length; i++){
-             if(!arr1.includes(arr2[i])){
-              r.push(arr2[i]);
-             }
-          }
+        }
+        for (let i = 0; i < arr2.length; i++) {
+            if (!arr1.includes(arr2[i])) {
+                r.push(arr2[i]);
+            }
+        }
 
     }
 
@@ -720,30 +720,30 @@ const mcd = (n1, n2) => {
     let numbers1 = [];
     let numbers2 = [];
 
-    for(let i=1; i<=n1; i++){
-        if(n1 % i == 0) numbers1.push(i);
+    for (let i = 1; i <= n1; i++) {
+        if (n1 % i == 0) numbers1.push(i);
     }
 
-    for(let i=1; i<=n2; i++){
-        if(n2 % i == 0) numbers2.push(i);
+    for (let i = 1; i <= n2; i++) {
+        if (n2 % i == 0) numbers2.push(i);
     }
-    return numbers1.filter(x => numbers2.includes(x)).sort((a,b) => b-a)[0];
+    return numbers1.filter(x => numbers2.includes(x)).sort((a, b) => b - a)[0];
 }
 
 const mcm = (n1, n2) => {
-    
+
     let numbers1 = [];
-        for(let i=n1; i<101; i++)
-            if(i % n1 == 0) numbers1.push(i);
+    for (let i = n1; i < 101; i++)
+        if (i % n1 == 0) numbers1.push(i);
 
     let r = n2;
     do {
-        if(r % n2 == 0){
-            if(numbers1.includes(r)) return r;
+        if (r % n2 == 0) {
+            if (numbers1.includes(r)) return r;
         }
         r++;
-    }while(true)
-        
+    } while (true)
+
 }
 
 //console.log(mcd(18, 15));
@@ -759,16 +759,18 @@ const mcm = (n1, n2) => {
 const count1to100 = () => {
     //1
     let n = 1;
-    while(n != 101){
+    while (n != 101) {
         //console.log(n);
         n++;
     }
     //2
-    for(let i=1; i<101; i++){
+    for (let i = 1; i < 101; i++) {
         //console.log(i);
     }
     //3
-    console.log(Array.from({ length: 100 }, (_, i) => i + 1).map(x => x));
+    console.log(Array.from({
+        length: 100
+    }, (_, i) => i + 1).map(x => x));
 }
 //count1to100();
 
@@ -786,20 +788,20 @@ const count1to100 = () => {
 function rockPaperScisors(c) {
     let r = ['Player1', 'Player2', 'Empate-'];
 
-    for(let i=0; i<c.length; i++){
+    for (let i = 0; i < c.length; i++) {
         let player1 = c[i][0];
         let player2 = c[i][1];
 
-        if(player1 == player2) r[2]+='.';
+        if (player1 == player2) r[2] += '.';
 
-        else if(player1 == 'R' && player2 == 'S') r[0]+='.';
-        else if(player1 == 'S' && player2 == 'P') r[0]+='.';
-        else if(player1 == 'P' && player2 == 'R') r[0]+='.';
+        else if (player1 == 'R' && player2 == 'S') r[0] += '.';
+        else if (player1 == 'S' && player2 == 'P') r[0] += '.';
+        else if (player1 == 'P' && player2 == 'R') r[0] += '.';
 
-        else r[1]+='.';
+        else r[1] += '.';
     }
 
-    return r.sort((a,b) => b.length-a.length)[0].slice(0,7);
+    return r.sort((a, b) => b.length - a.length)[0].slice(0, 7);
 }
 //console.log(rockPaperScisors([["S","S"], ["S","S"], ["P","S"]]));
 
@@ -813,25 +815,24 @@ function rockPaperScisors(c) {
 const paintShapes = (...args) => {
 
     let lado;
-    if(args.length == 1){
+    if (args.length == 1) {
         lado = args[0];
-        for(let i = 0; i < lado; i++){
-            let row = '';  // Almacenar cada fila
-            for(let j = 0; j < lado; j++){
-                if(i == 0 || i == lado - 1 || j == 0 || j == lado - 1){
+        for (let i = 0; i < lado; i++) {
+            let row = ''; // Almacenar cada fila
+            for (let j = 0; j < lado; j++) {
+                if (i == 0 || i == lado - 1 || j == 0 || j == lado - 1) {
                     row += '*';
                 } else {
                     row += ' ';
                 }
             }
-            console.log(row);  // Imprimir la fila completa
+            console.log(row); // Imprimir la fila completa
         }
-    }
-    else if(args.length == 2){
+    } else if (args.length == 2) {
         lado = args[0];
-       for(let i=0; i<lado; i++){
-        console.log(" ".repeat(lado/2 - i+1)+"*".repeat(i+i+1)+'\n');
-       }
+        for (let i = 0; i < lado; i++) {
+            console.log(" ".repeat(lado / 2 - i + 1) + "*".repeat(i + i + 1) + '\n');
+        }
     }
 }
 //paintShapes(5,5);
@@ -843,7 +844,7 @@ const paintShapes = (...args) => {
  * - Cada vector se podría representar como un array. Ejemplo: [1, -2]
  */
 
-function isOrtogonals (vector1, vector2){
+function isOrtogonals(vector1, vector2) {
     // Verificar si los vectores tienen la misma longitud
     if (vector1.length !== vector2.length) {
         throw new Error("Los vectores deben tener la misma longitud.");
@@ -860,3 +861,91 @@ function isOrtogonals (vector1, vector2){
 }
 
 //console.log(isOrtogonals([1,-2], [2,1]));
+
+/*
+#29 ----------------------------------------------------------------------------
+* Simula el funcionamiento de una máquina expendedora creando una operación
+ * que reciba dinero (array de monedas) y un número que indique la selección
+ * del producto.
+ * - El programa retornará el nombre del producto y un array con el dinero
+ *   de vuelta (con el menor número de monedas).
+ * - Si el dinero es insuficiente o el número de producto no existe,
+ *   deberá indicarse con un mensaje y retornar todas las monedas.
+ * - Si no hay dinero de vuelta, el array se retornará vacío.
+ * - Para que resulte más simple, trabajaremos en céntimos con monedas
+ *   de 5, 10, 50, 100 y 200.
+ * - Debemos controlar que las monedas enviadas estén dentro de las soportadas.
+ */
+
+const machine = (coins, selection) => {
+    const PRODUCTOS = {
+        chocolat: 2.10,
+        juice: 1.55,
+        water: 0.60,
+        gusanitos: 1.20
+    };
+    const COINSLIST = [5, 10, 50, 100, 200];
+
+    for (let c of coins) {
+        if (!COINSLIST.includes(c))
+            return `Coins rejected, not valids`;
+    };
+
+
+    let totalReceived = coins.reduce((a, b) => a + b) / 100;
+    let productName = Object.entries(PRODUCTOS)[selection][0];
+    let priceProduct = Object.entries(PRODUCTOS)[selection][1];
+
+    if (totalReceived < priceProduct) {
+        return `The product ${productName} costs ${priceProduct}$ and you have inserted ${totalReceived/100}$`
+    } else {
+        return `Enjoy your ${productName}! Thanks for you shopping! \n
+        ${(totalReceived - priceProduct).toFixed(2)}$ cash back.`;
+    }
+}
+//console.log(machine([200,100,50,10], 3));
+
+/* 
+#30 ----------------------------------------------------------------------------
+ * Crea una función que ordene y retorne una matriz de números.
+ * - La función recibirá un listado (por ejemplo [2, 4, 6, 8, 9]) y un parámetro
+ *   adicional "Asc" o "Desc" para indicar si debe ordenarse de menor a mayor
+ *   o de mayor a menor.
+ * - No se pueden utilizar funciones propias del lenguaje que lo resuelvan
+ *   automáticamente.
+ */
+
+const orderArray = (array, order) => {
+    let aux;
+    let count = array.length;
+    if (order == 'desc') {
+        do {
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] < array[i + 1]) {
+                    aux = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = aux;
+                } else continue;
+            }
+            count--;
+        } while (count > 1)
+        return array;
+    }
+
+    else if (order == 'asc') {
+        do {
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] > array[i + 1]) {
+                    aux = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = aux;
+                } else continue;
+            }
+            count--;
+        } while (count > 1)
+        return array;
+    } else{
+        return '2nd parameter invalid.';
+    }
+}
+//console.log(orderArray([5, 2, 7, 1, 5, 2, 4, 65, 21, 22, 10], 'asc'));
