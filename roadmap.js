@@ -992,3 +992,102 @@ const isBisiesto = (y) => {
     return years;
 }
 //console.log(isBisiesto(2010));
+
+/*
+#33 ---------------------------------------------------------------------------- 
+ * Dado un listado de números, encuentra el SEGUNDO más grande
+ */
+
+const secondNumber = (list) => {
+    return list.sort((a,b) => b-a)[1];
+}
+//console.log(secondNumber([6,21,7,2,6,23,64,63,234,4]));
+
+/*
+#34 ---------------------------------------------------------------------------- 
+ * Crea un función, que dado un año, indique el elemento 
+ * y animal correspondiente en el ciclo sexagenario del zodíaco chino.
+ * - Info: https://www.travelchinaguide.com/intro/astrology/60year-cycle.htm
+ * - El ciclo sexagenario se corresponde con la combinación de los elementos
+ *   madera, fuego, tierra, metal, agua y los animales rata, buey, tigre,
+ *   conejo, dragón, serpiente, caballo, oveja, mono, gallo, perro, cerdo
+ *   (en este orden).
+ * - Cada elemento se repite dos años seguidos.
+ * - El último ciclo sexagenario comenzó en 1984 (Madera Rata).
+ */
+
+const yearCicleChinese = (y) => {
+    const ZODIAC = ['Rat','Ox','Tiger','Rabbit','Dragon','Snake','Horse','Sheep','Monkey','Rooster','Dog','Pig'];
+    const ELEMENT = ['Wood','Wood','Fire','Fire','Earth','Earth','Metal','Metal','Water','Water'];
+    let FIRST_YEAR = [];
+
+    for(let i=4; i<y; i++){
+        if(i % 60 == 0) FIRST_YEAR.push(i+4);
+    }
+
+    FIRST_YEAR.push(y);
+    FIRST_YEAR.sort((a,b) => a-b);
+    let index = FIRST_YEAR.indexOf(y);
+    let r = FIRST_YEAR[index] - FIRST_YEAR[index-1];
+    let count = 0;
+    let i = 0;
+    let j = 0;
+    while(true){
+        if(i == ZODIAC.length) i = 0;
+        if(j == ELEMENT.length) j = 0;
+        count++;
+        i++;
+        j++;
+        if(count == r)
+            return ZODIAC[i] + " - " + ELEMENT[j];
+    }
+}
+//console.log(yearCicleChinese(2053));
+
+/*
+#35 ---------------------------------------------------------------------------- 
+/*
+ * Dado un array de enteros ordenado y sin repetidos,
+ * crea una función que calcule y retorne todos los que faltan entre
+ * el mayor y el menor.
+ * - Lanza un error si el array de entrada no es correcto.
+ */
+
+const lostNumbers = (a) => {
+    a = a.sort((a,b) => a-b);
+    let r = [];
+    for(let i=a[a.length-1]; i>a[0]; i--){
+        if(!a.includes(i)) r.push(i);
+    }
+    return r;
+}
+//console.log(lostNumbers([6,4,4,15,3]));
+
+/*
+#36 ---------------------------------------------------------------------------- 
+ * Crea un programa que calcule el daño de un ataque durante
+ * una batalla Pokémon.
+ * - La fórmula será la siguiente: daño = 50 * (ataque / defensa) * efectividad
+ * - Efectividad: x2 (súper efectivo), x1 (neutral), x0.5 (no es muy efectivo)
+ * - Sólo hay 4 tipos de Pokémon: Agua, Fuego, Planta y Eléctrico 
+ *   (buscar su efectividad)
+ * - El programa recibe los siguientes parámetros:
+ *  - Tipo del Pokémon atacante.
+ *  - Tipo del Pokémon defensor.
+ *  - Ataque: Entre 1 y 100.
+ *  - Defensa: Entre 1 y 100.
+ */
+
+const pokemonFight = (atacker, defender, atack, defend) => {
+
+    const EFECTIVIDAD = {
+        'Agua': { Fuego: 2, Planta: 0.5, Agua: 1, Electrico: 1 },
+        'Fuego': { Planta: 2, Agua: 0.5, Fuego: 1, Electrico: 1 },
+        'Planta': { Agua: 2, Fuego: 0.5, Planta: 1, Electrico: 1 },
+        'Electrico': { Agua: 2, Planta: 1, Fuego: 1, Electrico: 1 }
+    };
+
+    return 50 * (atack / defend) * EFECTIVIDAD[atacker][defender];
+}
+
+//console.log(pokemonFight('Agua','Planta',10, 10));
