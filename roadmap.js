@@ -930,9 +930,7 @@ const orderArray = (array, order) => {
             count--;
         } while (count > 1)
         return array;
-    }
-
-    else if (order == 'asc') {
+    } else if (order == 'asc') {
         do {
             for (let i = 0; i < array.length; i++) {
                 if (array[i] > array[i + 1]) {
@@ -944,7 +942,7 @@ const orderArray = (array, order) => {
             count--;
         } while (count > 1)
         return array;
-    } else{
+    } else {
         return '2nd parameter invalid.';
     }
 }
@@ -964,12 +962,12 @@ const orderArray = (array, order) => {
  *   **********
  */
 
-function beatifulText(text){
+function beatifulText(text) {
     let t = "*".repeat(14);
-    for(w of text.split(" ")){
-        t+="\n*"+w+" ".repeat(10-w.length+2)+"*\n";
+    for (w of text.split(" ")) {
+        t += "\n*" + w + " ".repeat(10 - w.length + 2) + "*\n";
     }
-    t+='*'.repeat(14);
+    t += '*'.repeat(14);
     return t;
 }
 //console.log(beatifulText('hola que tal soy colosal'));
@@ -985,9 +983,12 @@ const isBisiesto = (y) => {
     let count = 0;
     let years = [];
     do {
-        if((y % 4 == 0 && y % 100 !== 0) || (y % 400 == 0)) {years.push(y); count++};
+        if ((y % 4 == 0 && y % 100 !== 0) || (y % 400 == 0)) {
+            years.push(y);
+            count++
+        };
         y++;
-    }while(count < 30);
+    } while (count < 30);
 
     return years;
 }
@@ -999,7 +1000,7 @@ const isBisiesto = (y) => {
  */
 
 const secondNumber = (list) => {
-    return list.sort((a,b) => b-a)[1];
+    return list.sort((a, b) => b - a)[1];
 }
 //console.log(secondNumber([6,21,7,2,6,23,64,63,234,4]));
 
@@ -1017,28 +1018,28 @@ const secondNumber = (list) => {
  */
 
 const yearCicleChinese = (y) => {
-    const ZODIAC = ['Rat','Ox','Tiger','Rabbit','Dragon','Snake','Horse','Sheep','Monkey','Rooster','Dog','Pig'];
-    const ELEMENT = ['Wood','Wood','Fire','Fire','Earth','Earth','Metal','Metal','Water','Water'];
+    const ZODIAC = ['Rat', 'Ox', 'Tiger', 'Rabbit', 'Dragon', 'Snake', 'Horse', 'Sheep', 'Monkey', 'Rooster', 'Dog', 'Pig'];
+    const ELEMENT = ['Wood', 'Wood', 'Fire', 'Fire', 'Earth', 'Earth', 'Metal', 'Metal', 'Water', 'Water'];
     let FIRST_YEAR = [];
 
-    for(let i=4; i<y; i++){
-        if(i % 60 == 0) FIRST_YEAR.push(i+4);
+    for (let i = 4; i < y; i++) {
+        if (i % 60 == 0) FIRST_YEAR.push(i + 4);
     }
 
     FIRST_YEAR.push(y);
-    FIRST_YEAR.sort((a,b) => a-b);
+    FIRST_YEAR.sort((a, b) => a - b);
     let index = FIRST_YEAR.indexOf(y);
-    let r = FIRST_YEAR[index] - FIRST_YEAR[index-1];
+    let r = FIRST_YEAR[index] - FIRST_YEAR[index - 1];
     let count = 0;
     let i = 0;
     let j = 0;
-    while(true){
-        if(i == ZODIAC.length) i = 0;
-        if(j == ELEMENT.length) j = 0;
+    while (true) {
+        if (i == ZODIAC.length) i = 0;
+        if (j == ELEMENT.length) j = 0;
         count++;
         i++;
         j++;
-        if(count == r)
+        if (count == r)
             return ZODIAC[i] + " - " + ELEMENT[j];
     }
 }
@@ -1054,10 +1055,10 @@ const yearCicleChinese = (y) => {
  */
 
 const lostNumbers = (a) => {
-    a = a.sort((a,b) => a-b);
+    a = a.sort((a, b) => a - b);
     let r = [];
-    for(let i=a[a.length-1]; i>a[0]; i--){
-        if(!a.includes(i)) r.push(i);
+    for (let i = a[a.length - 1]; i > a[0]; i--) {
+        if (!a.includes(i)) r.push(i);
     }
     return r;
 }
@@ -1081,13 +1082,180 @@ const lostNumbers = (a) => {
 const pokemonFight = (atacker, defender, atack, defend) => {
 
     const EFECTIVIDAD = {
-        'Agua': { Fuego: 2, Planta: 0.5, Agua: 1, Electrico: 1 },
-        'Fuego': { Planta: 2, Agua: 0.5, Fuego: 1, Electrico: 1 },
-        'Planta': { Agua: 2, Fuego: 0.5, Planta: 1, Electrico: 1 },
-        'Electrico': { Agua: 2, Planta: 1, Fuego: 1, Electrico: 1 }
+        'Agua': {
+            Fuego: 2,
+            Planta: 0.5,
+            Agua: 1,
+            Electrico: 1
+        },
+        'Fuego': {
+            Planta: 2,
+            Agua: 0.5,
+            Fuego: 1,
+            Electrico: 1
+        },
+        'Planta': {
+            Agua: 2,
+            Fuego: 0.5,
+            Planta: 1,
+            Electrico: 1
+        },
+        'Electrico': {
+            Agua: 2,
+            Planta: 1,
+            Fuego: 1,
+            Electrico: 1
+        }
     };
 
     return 50 * (atack / defend) * EFECTIVIDAD[atacker][defender];
 }
 
 //console.log(pokemonFight('Agua','Planta',10, 10));
+
+/*
+#37 ---------------------------------------------------------------------------- 
+ * ¡La Tierra Media está en guerra! En ella lucharán razas leales
+ * a Sauron contra otras bondadosas que no quieren que el mal reine
+ * sobre sus tierras.
+ * Cada raza tiene asociado un "valor" entre 1 y 5:
+ * - Razas bondadosas: Pelosos (1), Sureños buenos (2), Enanos (3),
+ *   Númenóreanos (4), Elfos (5)
+ * - Razas malvadas: Sureños malos (2), Orcos (2), Goblins (2),
+ *   Huargos (3), Trolls (5)
+ * Crea un programa que calcule el resultado de la batalla entre
+ * los 2 tipos de ejércitos:
+ * - El resultado puede ser que gane el bien, el mal, o exista un empate.
+ *   Dependiendo de la suma del valor del ejército y el número de integrantes.
+ * - Cada ejército puede estar compuesto por un número de integrantes variable
+ *   de cada raza.
+ * - Tienes total libertad para modelar los datos del ejercicio.
+ * Ej: 1 Peloso pierde contra 1 Orco
+ *     2 Pelosos empatan contra 1 Orco
+ *     3 Pelosos ganan a 1 Orco
+ */
+
+const tierraMedia = (team1, team2) => {
+
+    const razasBondadosas = {
+        pelosos: 1,
+        'sureños buenos': 2,
+        enanos: 3,
+        numeroreanos: 4,
+        elfos: 5
+    };
+
+    const razasMalvadas = {
+        'sureños malos': 2,
+        orcos: 2,
+        goblins: 2,
+        huargos: 3,
+        trolls: 5
+    }
+
+    let t1 = Object.entries(team1);
+    let rt1 = 0;
+    for (let i = 0; i < t1.length; i++) {
+        rt1 += razasBondadosas[t1[i][0]] * t1[i][1];
+    }
+
+    let t2 = Object.entries(team2);
+    let rt2 = 0;
+    for (let i = 0; i < t2.length; i++) {
+        rt2 += razasMalvadas[t2[i][0]] * t2[i][1];
+    }
+
+    return rt1 > rt2 ? `Team 1 is the winner with ${rt1}points!!` : rt2 > rt1 ? `Team 2 is the winner with ${rt2}points!!` : 'It"s draw!';
+}
+/*console.log(tierraMedia({
+    pelosos: 10,
+    elfos: 4
+}, {
+    orcos: 10,
+    trolls: 2,
+    huargos: 10
+}));*/
+
+/*
+#38 ---------------------------------------------------------------------------- 
+ * ¡Han anunciado un nuevo "The Legend of Zelda"!
+ * Se llamará "Tears of the Kingdom" y se lanzará el 12 de mayo de 2023.
+ * Pero, ¿recuerdas cuánto tiempo ha pasado entre los distintos
+ * "The Legend of Zelda" de la historia?
+ * Crea un programa que calcule cuántos años y días hay entre 2 juegos de Zelda
+ * que tú selecciones.
+ * - Debes buscar cada uno de los títulos y su día de lanzamiento 
+ *   (si no encuentras el día exacto puedes usar el mes, o incluso inventártelo)
+ */
+const games = {
+    'tears of the kingdom' : '05/12/2023',
+    'echoes of wisdom' : '09/26/2024',
+    'breath of the wild': '03/03/2017',
+    'a link to the past': '11/21/1991',
+    'phanthom hourglass': '06/23/2007'
+}
+
+function zeldaGames (g1, g2) {
+
+    let fecha1 = new Date(g1);
+    let fecha2 = new Date(g2);
+
+     // Asegurarnos de que la fecha2 sea siempre mayor
+  const fechaInicio = fecha1 < fecha2 ? fecha1 : fecha2;
+  const fechaFin = fecha1 > fecha2 ? fecha1 : fecha2;
+  
+  // Diferencia en milisegundos
+  const diferenciaMilisegundos = fechaFin - fechaInicio;
+  
+  // Diferencia en días (milisegundos en un día: 24 * 60 * 60 * 1000)
+  const diferenciaDias = Math.floor(diferenciaMilisegundos / (1000 * 60 * 60 * 24));
+  
+  // Calcular diferencia en años
+  const diferenciaAnios = fechaFin.getFullYear() - fechaInicio.getFullYear();
+  
+  // Ajuste si no ha llegado la fecha de cumpleaños en el año
+  const ajusteAnio = (fechaFin.getMonth() < fechaInicio.getMonth() || 
+                      (fechaFin.getMonth() === fechaInicio.getMonth() && fechaFin.getDate() < fechaInicio.getDate())) 
+                      ? 1 : 0;
+  
+  const diferenciaFinalAnios = diferenciaAnios - ajusteAnio;
+
+  return {
+    dias: diferenciaDias,
+    años: diferenciaFinalAnios
+  };
+
+}
+//console.log(zeldaGames(games["breath of the wild"], games["a link to the past"]));
+
+/*
+#39 ---------------------------------------------------------------------------- 
+ * Crea un programa se encargue de transformar un número binario
+ * a decimal sin utilizar funciones propias del lenguaje que
+ * lo hagan directamente.
+ */
+
+const binaryToDecimal = (binario) => {
+    // Convertir la cadena de texto binaria a un array de caracteres
+  const binArray = binario.split('');
+  
+  // Inicializar la variable para el número decimal
+  let decimal = 0;
+  
+  // Recorrer cada dígito del binario desde el final al inicio
+  for (let i = 0; i < binArray.length; i++) {
+    // Multiplicar el dígito por 2 elevado a la posición correspondiente
+    const bit = parseInt(binArray[binArray.length - 1 - i], 10);
+    
+    // Verificamos si el valor es 0 o 1 para evitar errores
+    if (bit !== 0 && bit !== 1) {
+      throw new Error("Entrada no válida, sólo debe contener 0s y 1s.");
+    }
+
+    // Sumar el valor correspondiente a la variable decimal
+    decimal += bit * Math.pow(2, i);
+  }
+  
+  return decimal;
+}
+//console.log(binaryToDecimal('10101'));
