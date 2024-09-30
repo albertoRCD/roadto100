@@ -1291,6 +1291,14 @@ const quickSort = (list) => {
 }
 //console.log(quickSort([3, 8, 5, 4, 1, 9, 7]));
 
+/*
+#41 ---------------------------------------------------------------------------- 
+ * Crea una función que sea capaz de dibujar el "Triángulo de Pascal"
+ * indicándole únicamente el tamaño del lado.
+ *
+ * - Aquí puedes ver rápidamente cómo se calcula el triángulo:
+ *   https://commons.wikimedia.org/wiki/File:PascalTriangleAnimated2.gif
+ */
 const pascalTriangle = (filas) => {
  // Array donde almacenaremos el triángulo
  let triangulo = [];
@@ -1320,3 +1328,32 @@ const pascalTriangle = (filas) => {
  }
 }
 //console.log(pascalTriangle(5));
+
+/*
+#42 ---------------------------------------------------------------------------- 
+ * Crea una función que calcule el valor del parámetro perdido
+ * correspondiente a la ley de Ohm.
+ * - Enviaremos a la función 2 de los 3 parámetros (V, R, I), y retornará
+ *   el valor del tercero (redondeado a 2 decimales).
+ * - Si los parámetros son incorrectos o insuficientes, la función retornará
+ *   la cadena de texto "Invalid values".
+ * V=I⋅R
+ */
+
+const leyOhm = (v = null, i = null, r = null) => {
+    let cNulls = 0;
+    if(v == null) cNulls++;
+    if(i == null) cNulls++;
+    if(r == null) cNulls++;
+
+    if(cNulls != 1) return 'Invalid values';
+
+    if(v == null){
+        return 'Param lost "V" is ' + (i * r).toFixed(2);
+    } else if(i == null){
+        return 'Param lost "I" is ' + (v / r).toFixed(2);
+    } else if(r == null){
+        return 'Param lost "R" is ' + (v / i).toFixed(2);
+    }
+}
+//console.log(leyOhm(4,3,null));
