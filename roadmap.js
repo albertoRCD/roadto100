@@ -1357,3 +1357,32 @@ const leyOhm = (v = null, i = null, r = null) => {
     }
 }
 //console.log(leyOhm(4,3,null));
+
+/*
+#43 ----------------------------------------------------------------------------
+ * Crea una función que transforme grados Celsius en Fahrenheit
+ * y viceversa.
+ *
+ * - Para que un dato de entrada sea correcto debe poseer un símbolo "°"
+ *   y su unidad ("C" o "F").
+ * - En caso contrario retornará un error.
+ */
+
+const convertTemperatures = (g) => {
+    let type = g[g.length-1];
+
+    if(g[g.length-2] != 'º') return "Where's the º ?";
+
+    if(type != 'C' && type != 'F') return 'Invalid input';
+
+    let temp = parseFloat(g.slice(0,g[g.length-3]));
+
+    switch(type){
+        case 'C':
+            return (( temp * 9 / 5) + 32).toFixed(1)+"ºF";
+        case 'F':
+            return ((temp - 32) * 5 / 9).toFixed(1)+"ºC";
+    }
+
+}
+//console.log(convertTemperatures('99ºC'));
