@@ -1259,3 +1259,64 @@ const binaryToDecimal = (binario) => {
   return decimal;
 }
 //console.log(binaryToDecimal('10101'));
+
+/*
+#40 ---------------------------------------------------------------------------- 
+ * Implementa uno de los algoritmos de ordenación más famosos:
+ * el "Quick Sort", creado por C.A.R. Hoare.
+ * - Entender el funcionamiento de los algoritmos más utilizados de la historia
+ *   Nos ayuda a mejorar nuestro conocimiento sobre ingeniería de software.
+ *   Dedícale tiempo a entenderlo, no únicamente a copiar su implementación.
+ * - Esta es una nueva serie de retos llamada "TOP ALGORITMOS",
+ *   donde trabajaremos y entenderemos los más famosos de la historia.
+ */
+
+const quickSort = (list) => {
+    if (list.length <= 1) {
+        return list;
+    }
+
+    let index = Math.floor(list.length / 2);
+    let pivot = list[index];
+
+    // Eliminar el pivote de la lista original
+    list = list.filter((_, i) => i !== index);
+
+    // Dividir la lista en dos: menores y mayores al pivote
+    let menores = list.filter(x => x < pivot);
+    let mayores = list.filter(x => x > pivot);
+
+    // Llamada recursiva a quickSort para ordenar las sublistas
+    return [...quickSort(menores), pivot, ...quickSort(mayores)];
+}
+//console.log(quickSort([3, 8, 5, 4, 1, 9, 7]));
+
+const pascalTriangle = (filas) => {
+ // Array donde almacenaremos el triángulo
+ let triangulo = [];
+
+ // Generar cada fila del triángulo
+ for (let n = 0; n < filas; n++) {
+     // Crear una nueva fila
+     let fila = [1]; // Empezamos cada fila con 1
+
+     // Llenar la fila con los valores de Pascal, excepto el primer 1
+     for (let k = 1; k < n; k++) {
+         fila[k] = triangulo[n - 1][k - 1] + triangulo[n - 1][k];
+     }
+
+     // Si no es la primera fila, añadimos el último 1
+     if (n > 0) {
+         fila.push(1);
+     }
+
+     // Añadir la fila al triángulo
+     triangulo.push(fila);
+ }
+
+ // Imprimir el triángulo
+ for (let fila of triangulo) {
+     console.log(fila.join(" "));
+ }
+}
+//console.log(pascalTriangle(5));
